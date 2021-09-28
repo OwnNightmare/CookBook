@@ -38,14 +38,14 @@ def open_and_read():
 
 
 def get_shop_list_by_dishes(dishes, persons):
-    cook_cook_book = (open_and_read())
+    cook_book = (open_and_read())
     shop_list = {}
     for dish in dishes:
-        for index, _ in enumerate(cook_cook_book[dish]):
-            cook_cook_book[dish][index]['quantity'] *= persons
-            ingr = cook_cook_book[dish][index]['ingridient_name']
-            quan = cook_cook_book[dish][index]['quantity']
-            meas = cook_cook_book[dish][index]['measure']
+        for index, _ in enumerate(cook_book[dish]):
+            cook_book[dish][index]['quantity'] *= persons
+            ingr = cook_book[dish][index]['ingridient_name']
+            quan = cook_book[dish][index]['quantity']
+            meas = cook_book[dish][index]['measure']
             if not shop_list.get(ingr):
                 shop_list[ingr] = {'quantity': quan, 'measure': meas}
             else:
