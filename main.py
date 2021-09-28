@@ -42,8 +42,15 @@ def get_shop_list_by_dishes(dishes, persons):
     for dish in dishes:
         for index, _ in enumerate(cook_book[dish]):
             cook_book[dish][index]['quantity'] *= persons
-            temp_book[cook_book[dish][index]['ingridient_name']] = {'quantity': cook_book[dish][index]['quantity'],
-                                                                    'measure': cook_book[dish][index]['measure']}
+            ingr = cook_book[dish][index]['ingridient_name']
+            quan = cook_book[dish][index]['quantity']
+            meas = cook_book[dish][index]['measure']
+            if not temp_book.get(ingr):
+                temp_book[ingr] = {'quantity': quan, 'measure': meas}
+            else:
+                curr = temp_book.get(ingr[quan])
+                temp_book[ingr] = {'quantity': curr + quan, 'measure': meas}
+
     return temp_book
 
 
