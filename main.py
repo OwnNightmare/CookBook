@@ -55,4 +55,7 @@ def get_shop_list_by_dishes(dishes, persons):
     return shop_list
 
 
-pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет', 'Фахитос'], 10))
+shop_list = (get_shop_list_by_dishes(['Запеченный картофель', 'Омлет', 'Фахитос'], 10))
+cook_book_ = open_and_read()
+pprint(cook_book_)
+pprint(shop_list)
