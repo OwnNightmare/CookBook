@@ -22,29 +22,37 @@ from pprint import pprint
 
 
 def open_and_read():
-    with open('data.txt', encoding='utf8') as file:
-        book = {}
+    with open('data.txt', 'r', encoding='utf8') as file:
+        cook_book = {}
         for line in file:
-            dish = file.readline().strip()
-            book[dish] = []
+            dish = line.strip()
+            cook_book[dish] = []
             counter = int(file.readline())
             for _ in range(counter):
                 ingredient, amount, unit = file.readline().strip().split(' | ')
                 amount = int(amount)
                 diction = {'ingridient_name': ingredient, 'quantity': amount, 'measure': unit}
-                book[dish].append(diction)
-        return book
+                cook_book[dish].append(diction)
+            file.readline()
+        return cook_book
 
 
 def get_shop_list_by_dishes(dishes, persons):
-    cook_book = (open_and_read())
-    temp_book = {}
+    cook_cook_book = (open_and_read())
+    shop_list = {}
     for dish in dishes:
-        for index, _ in enumerate(cook_book[dish]):
-            cook_book[dish][index]['quantity'] *= persons
-            temp_book[cook_book[dish][index]['ingridient_name']] = {'quantity': cook_book[dish][index]['quantity'],
-                                                                    'measure': cook_book[dish][index]['measure']}
-    return temp_book
+        for index, _ in enumerate(cook_cook_book[dish]):
+            cook_cook_book[dish][index]['quantity'] *= persons
+            ingr = cook_cook_book[dish][index]['ingridient_name']
+            quan = cook_cook_book[dish][index]['quantity']
+            meas = cook_cook_book[dish][index]['measure']
+            if not shop_list.get(ingr):
+                shop_list[ingr] = {'quantity': quan, 'measure': meas}
+            else:
+                current_amount = shop_list[ingr].get('quantity')
+                shop_list[ingr] = {'quantity': current_amount + quan, 'measure': meas}
+
+    return shop_list
 
 
 pprint(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет', 'Фахитос'], 10))
