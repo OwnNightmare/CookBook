@@ -1,9 +1,8 @@
-import os
 from pprint import pprint
 
 
 def open_and_read():
-    with open('data.txt', 'r', encoding='utf8') as file:
+    with open('recipes.txt', 'r', encoding='utf8') as file:
         cook_book = {}
         for line in file:
             dish = line.strip()
@@ -36,7 +35,9 @@ def get_shop_list_by_dishes(dishes, persons):
 
 
 def show(something):
+    n = '\n'
     pprint(something)
+    print(n)
 
 
 show(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет', 'Фахитос'], 10))
