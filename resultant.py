@@ -42,6 +42,13 @@ def read_and_write(read_from, write_to, mode='a', buffering=1, encoding='utf8'):
                 writing_in.write(str(file.length) + '\n')
                 writing_in.write(file.content + '\n')
         print(f'file {writing_in.name} was written')
+    elif type(read_from) == File:
+        read_from.reading()
+        with open(write_to, mode, buffering, encoding) as writing_in:
+            writing_in.write(read_from.name + '\n')
+            writing_in.write(str(read_from.length) + '\n')
+            writing_in.write(read_from.content + '\n')
+        print(f'file {writing_in.name} was written')
 
 
 def clear_file(path, mode='w'):
