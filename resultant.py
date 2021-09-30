@@ -32,7 +32,7 @@ def assign_files():
     return files
 
 
-def read_and_write(read_from, write_to, mode='a', buffering=1, encoding='utf8'):
+def read_and_write(read_from, write_to, mode='a', buffering=2, encoding='utf8'):
     if type(read_from) == list:
         for file in read_from:
             file.reading()

@@ -31,6 +31,7 @@ def get_shop_list_by_dishes(dishes, persons):
             else:
                 current_amount = shop_list[ingredient_value].get('quantity')
                 shop_list[ingredient_value] = {'quantity': current_amount + quantity_value, 'measure': measure_value}
+    print("Ваш список покупок: " + '\n')
     return shop_list
 
 
@@ -40,5 +41,5 @@ def show(something):
     print(n)
 
 
+# show(open_and_read())
 show(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет', 'Фахитос'], 10))
-show(open_and_read())
